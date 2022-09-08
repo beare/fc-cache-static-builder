@@ -64,7 +64,7 @@ def build_freetype(release):
     subprocess.check_call(["dpkg-buildpackage", "-uc", "-us", "-Zgzip"], cwd=pkgsrcdir)
     # exclude "freetype2-demos" from the installed debs
     debs = glob.glob(pkgbasesrcdir+"/libfreetype*.deb")
-    subprocess.check_call(["sudo", "apt-get", "install", "-y"]+debs)
+    subprocess.check_call(["sudo", "apt-get", "install", "-y", "--allow-downgrades"]+debs)
     # ensure we cleanup our self-installed stuff
     atexit.register(cleanup_self_build_fontconfig)
 
